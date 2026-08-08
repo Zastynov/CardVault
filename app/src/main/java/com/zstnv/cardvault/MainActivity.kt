@@ -68,8 +68,9 @@ fun CardVault() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column {
-                        Text(
-                            text = if (userName.isBlank())
-                                greeting
-                            else
-                                "$g
+                       Text(greeting, fontSize = 28.sp, fontWeight = FontWeight.Bold)
+
+Text(
+    "Твои бонусные карты",
+    color = Color.Gray
+)
