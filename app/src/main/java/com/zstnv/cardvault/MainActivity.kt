@@ -79,6 +79,7 @@ fun CardVault() {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .statusBarsPadding()
                     .padding(18.dp)
             ) {
 
@@ -115,7 +116,10 @@ fun CardVault() {
                             showSettings = true
                         }
                     ) {
-                        Text("⚙")
+                        Text(
+                            text = "⚙",
+                            fontSize = 24.sp
+                        )
                     }
                 }
 
@@ -190,10 +194,11 @@ fun CardVault() {
                                         )
 
                                         Text(
-                                            text = if (card.code.isBlank())
+                                            text = if (card.code.isBlank()) {
                                                 "Код не добавлен"
-                                            else
-                                                "Нажмите, чтобы открыть",
+                                            } else {
+                                                "Нажмите, чтобы открыть"
+                                            },
                                             color = Color.White.copy(
                                                 alpha = 0.85f
                                             )
@@ -216,9 +221,9 @@ fun CardVault() {
                 onAdd = { name, code, color ->
 
                     cards = cards + CardItem(
-                        name,
-                        code,
-                        color
+                        name = name,
+                        code = code,
+                        color = color
                     )
 
                     showAdd = false
@@ -246,13 +251,13 @@ fun CardVault() {
                         if (card.code.isBlank()) {
 
                             Text(
-                                "Код карты не добавлен"
+                                text = "Код карты не добавлен"
                             )
 
                         } else {
 
                             Text(
-                                "Код карты: " + card.code,
+                                text = "Код карты: ${card.code}",
                                 fontSize = 18.sp
                             )
                         }
@@ -273,7 +278,7 @@ fun CardVault() {
                         ) {
 
                             Text(
-                                "Удалить карту",
+                                text = "Удалить карту",
                                 color = Color.Red
                             )
                         }
@@ -410,15 +415,12 @@ fun AddDialog(
         confirmButton = {
 
             TextButton(
-
                 onClick = {
 
                     val color = try {
 
                         Color(
-                            android.graphics.Color.parseColor(
-                                hex
-                            )
+                            android.graphics.Color.parseColor(hex)
                         )
 
                     } catch (_: Exception) {
@@ -434,7 +436,6 @@ fun AddDialog(
                         color
                     )
                 }
-
             ) {
                 Text("Добавить")
             }
